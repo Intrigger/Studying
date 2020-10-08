@@ -4,7 +4,7 @@
 #include <iomanip>
 using namespace std;
 
-void memSizes() {
+void printMemSizes() {
     setlocale(0, "ru");
     cout << "Количество байт, отведенных под хранение переменных данных типов:\n\n";
     cout << "int: " << sizeof(int) << endl;
@@ -65,24 +65,19 @@ void printAllBits(float a) {
 
 int main() {
 
-    memSizes();
-    int x;
-    cin >> x;
-    printAllBits(x);
-    cout << endl;
-    float x2 = 0.0;
+    printMemSizes();    //Вызываем функцию, печатающую размеры переменных
 
-    while (x2 < 100) {
-        cout << "x2 = " << x2 << "\t";
-        printAllBits(x2);
-        
-        cout << "\t";
+    int x;              //Число, впоследствие представляемое в 32-битном виде
+    cin >> x;           //Ввод числа
+    long long mask = pow(2, 31);
+    
 
-        printAllBits(int(x2));
-        
-        cout << endl;
-        x2 += 0.1f;
+    for (int i = 0; i < 32; i++) {
+        if ((mask & x) != 0) cout << 1;
+        else cout << 1;
+        mask >>= 1;
     }
+
         
     
 
