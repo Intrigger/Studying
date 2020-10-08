@@ -20,66 +20,57 @@ void printMemSizes() {
     cout << "bool: " << sizeof(bool) << endl;
 }
 
-void printAllBits(int a) {
-    int x = abs(a);
-    string s = "";
-    while (x > 0) {
-        s += (x % 2) + 48;
-        x = x >> 1;
-    }
-    for (int i = 0; i < s.length() / 2; i++) {
-        swap(s[i], s[s.length() - 1 - i]);
-    }
-    while (s.length() < 32) s = "0" + s;
-    if (a < 0) {
-        for (int i = 0; i < s.length(); i++) {
-            if (s[i] == '0') s[i] = '1';
-            else s[i] = '0';
-        }
-    }
-    cout << s[0] << " ";
-    for (int i = 1; i < 32; i++) cout << s[i];
-}
-
-void printAllBits(float a) {
-    char s[32];
-    union {
-        int tool;
-        float num_f;
-    };
-    
-    num_f = a;
-
-    for (int i = 0; i < 32; i++) s[i] = 0;
-    for (int i = 0; i < 32; i++) {
-        s[32 - 1 - i] = tool % 2;
-        tool >>= 1;
-    }
-    cout << int(s[0]) << " " << int(s[1]) << " ";
-    for (int i = 2; i < 32; i++) {
-        cout << int(s[i]);
-    }
-}
-
-
-
 int main() {
 
     printMemSizes();    //Вызываем функцию, печатающую размеры переменных
 
     int x;              //Число, впоследствие представляемое в 32-битном виде
+    cout << "\nEnter an integer: ";
     cin >> x;           //Ввод числа
     long long mask = pow(2, 31);
     
-
     for (int i = 0; i < 32; i++) {
         if ((mask & x) != 0) cout << 1;
-        else cout << 1;
+        else cout << 0;
+        if (i == 0) cout << " ";
         mask >>= 1;
     }
 
-        
+
+    union {
+        int putinVor;
+        float navalnyTop;
+    };
+    cout << "\nEnter float number: ";
+
+    cin >> navalnyTop;
     
+    mask = pow(2, 31);
+
+    for (int i = 0; i < 32; i++) {
+        if ((mask & putinVor) != 0) cout << 1;
+        else cout << 0;
+        if (i == 0) cout << " ";
+        mask >>= 1;
+    }
+
+    union {
+        unsigned long long ull;
+        double d;
+    };
+
+    unsigned long long maskULL = pow(2, 63);
+
+    cout << "\nEnter double value: ";
+    cin >> d;
+
+
+    for (int i = 0; i < 64; i++) {
+        if ((maskULL & ull) != 0) cout << 1;
+        else cout << 0;
+        if (i == 0) cout << " ";
+        maskULL >>= 1;
+    }
 
     return 0;
 }
